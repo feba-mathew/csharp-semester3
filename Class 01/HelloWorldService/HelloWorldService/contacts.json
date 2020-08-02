@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "Id": 1,
+      "Name": "jijo",
+      "DateAdded": "04/18/1988"
+    },
+    {
+      "Id": 2,
+      "Name": "feba",
+      "DateAdded": "01/14/1991"
+    },
+    {
+      "Id": 3,
+      "Name": "noah",
+      "DateAdded": "04/13/2017"
+    }
+  ]
+}

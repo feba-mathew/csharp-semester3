@@ -1,0 +1,9 @@
+7/9/2020 7:22:57 PM : Elapsed=00:01:05.1669415 : Action=Index
+7/9/2020 7:28:50 PM : Elapsed=00:00:00.0375352 : Action=Index
+7/9/2020 7:56:40 PM : Elapsed=00:00:00.0158439 : Action=Index
+7/9/2020 7:56:47 PM : Elapsed=00:00:02.4922589 : Action=Products
+7/9/2020 7:57:09 PM : Elapsed=00:00:09.6908624 : Action=Products
+7/9/2020 7:59:40 PM : Elapsed=00:00:00.0323284 : Action=Index
+7/9/2020 8:01:24 PM : Elapsed=00:00:26.5566446 : Action=Products
+7/9/2020 8:01:26 PM : Elapsed=00:00:00.0000398 : Action=Products
+7/9/2020 8:05:32 PM : Elapsed=00:03:49.7548610 : Action=Products

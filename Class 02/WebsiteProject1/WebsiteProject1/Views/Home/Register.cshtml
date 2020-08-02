@@ -1,0 +1,45 @@
+﻿@model WebsiteProject1.Models.GuestResponse
+@{
+    ViewBag.Title = "Register";
+
+}
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="~/Content/styles.css" />
+        <title>Register</title>
+        <style>
+            .btn a {
+                color: white;
+                text-decoration: none;
+            }
+
+            body {
+                background-color: #f1f1f1;
+            }
+        </style>
+    </head>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        <div class="jumbotron">
+            <h1>Register.</h1><br />
+            <p class="lead">Create a new account.</p>
+        </div>
+        <div class="col-md-offset-2">
+            <div class="col-md-1">
+                <p>Email</p>
+                <p>Password</p>
+                <p>Confirm Password</p>
+            </div>
+            <div class="col-md-offset-2">
+                <p>@Html.TextBoxFor(t => t.Email)</p>
+                <p>@Html.TextBoxFor(t => t.Password)</p>
+                <p>@Html.TextBoxFor(t => t.ConfirmPassword)</p>
+                <input type="submit" value="Register" />
+
+            </div>
+        </div>
+    }
