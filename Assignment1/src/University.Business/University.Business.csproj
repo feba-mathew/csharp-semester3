@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="ClassManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserClassManager.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -192,10 +192,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClassModel.cs" />
+    <Compile Include="Models\EnrollInClassModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ClassListModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\StudentClassesModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -258,6 +261,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\ClassList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\EnrollInClass.cshtml" />
+    <Content Include="Views\Home\StudentClasses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

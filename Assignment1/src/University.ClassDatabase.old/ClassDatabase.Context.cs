@@ -27,5 +27,6 @@ namespace University.ClassDatabase
     
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<User> Users { get; set; }
+       
     }
 }

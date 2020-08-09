@@ -1,0 +1,26 @@
+﻿@model University.Website.Models.EnrollInClassModel
+
+@{
+    ViewBag.Title = "Enroll In Class";
+}
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        @if (Request.IsAuthenticated)
+        {
+        <section id="enrollForm">
+            @using (Html.BeginForm("EnrollInClass", "Home", new { ReturnUrl = ViewBag.ReturnUrl },
+                       FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.SelectedClassId, ViewBag.ClassList as SelectList, new { @class = "form-control" })
+                </div>
+                <div class="col-md-8">
+                    <input type="submit" value="Add Class" class="btn btn-default" />
+                </div>
+            }
+        </section>
+            }
+        </div>
+</div>

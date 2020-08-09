@@ -14,46 +14,79 @@ namespace HelloWorldService.Controllers
     public class ContactsController : ControllerBase
     {
         public static List<Contact> contacts = new List<Contact>();
+        public static int currentId = 101;
 
-        // GET: api/Contacts
+        // GET: api/<ContactsController>
         [HttpGet]
-        public IEnumerable Get()
+        public IEnumerable<Contact> Get()
         {
             return contacts;
         }
-
-        // GET: api/Contacts/5
-        [HttpGet("{id}", Name = "Get")]
-        public Contact Get(int id)
+        // GET api/<ContactsController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            foreach(var contact in contacts)
+            var contact = contacts.FirstOrDefault(t => t.Id == id);
+
+            if (contact == null)
             {
-                if(contact.Id == id)
-                {
-                    return contact;
-                }
+                return NotFound();
             }
 
-            return null;
+            return new OkObjectResult(contact);
         }
 
-        // POST: api/Contacts
+        // POST api/<ContactsController>
         [HttpPost]
-        public void Post([FromBody] Contact value)
+        public IActionResult Post([FromBody] Contact value)
         {
+            if (value == null)
+            {
+                return new BadRequestResult();
+            }
+
+            value.Id = currentId++;
+            value.DateAdded = DateTime.Now;
+
             contacts.Add(value);
+
+            //var result = new { Id = value.Id, Candy = true };
+
+            return CreatedAtAction(nameof(Get),
+                new { id = value.Id },
+                value);
         }
 
-        // PUT: api/Contacts/5
+        // PUT api/<ContactsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Contact value)
+        public IActionResult Put(int id, [FromBody] Contact value)
         {
+            var contact = contacts.FirstOrDefault(t => t.Id == id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            contact.Id = id;
+            contact.Name = value.Name;
+            contact.Phones = value.Phones;
+
+            return Ok(contact);
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE api/<ContactsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var contactsRemoved = contacts.RemoveAll(t => t.Id == id);
+
+            if (contactsRemoved == 0)
+            {
+                return NotFound(); //404
+            }
+
+            return Ok(); //200
         }
     }
 }

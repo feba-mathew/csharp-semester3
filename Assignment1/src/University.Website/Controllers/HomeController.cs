@@ -14,10 +14,12 @@ namespace University.Website.Controllers
     {
         private readonly IClassManager classManager;
         private readonly IUserManager userManager;
-        public HomeController(IClassManager classManager, IUserManager userManager)
+        private readonly IUserClassManager userClassManager;
+        public HomeController(IClassManager classManager, IUserManager userManager, IUserClassManager userClassManager)
         {
             this.classManager = classManager;
             this.userManager = userManager;
+            this.userClassManager = userClassManager;
         }
 
        
@@ -51,8 +53,94 @@ namespace University.Website.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult EnrollInClass()
+        {
+            var classes = classManager.Classes.Select(t => new University.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
+                                              .ToList();
+
+            List<SelectListItem> classList = new List<SelectListItem>();
+            
+            foreach(var classEntry in classes)
+            {
+                classList.Add(new SelectListItem { Text = classEntry.Name, Value = classEntry.Id.ToString() });
+            }
+
+            ViewBag.ClassList = new SelectList(classList, "Value", "Text");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EnrollInClass(EnrollInClassModel enrollInClassModel)
+        {
+            Models.UserModel userModel = (Models.UserModel)Session["User"];
+
+            UserClassModel userClassModel = new UserClassModel();
+            userClassModel.ClassId = enrollInClassModel.SelectedClassId;
+            userClassModel.UserId = userModel.Id;
+
+            userClassManager.EnrollInClass(userClassModel);
+
+            return Redirect("~/Home/StudentClasses");
+        }
+
+        [HttpGet]
+        public ActionResult StudentClasses()
+        {
+            Models.UserModel userModel = (Models.UserModel)Session["User"];
+
+            if (userModel != null)
+            {
+                if (RouteData.Values.TryGetValue("id", out object classIdObject))
+                {
+                    int classId = Convert.ToInt32(classIdObject);
+
+                    UserClassModel userClassModel = new UserClassModel();
+                    userClassModel.ClassId = classId;
+                    userClassModel.UserId = userModel.Id;
+
+                    userClassManager.RemoveUserFromClass(userClassModel);
+                }
+
+                var classes = userClassManager.GetUserClasses(userModel.Id)
+                                              .Select(t => new University.Website.Models.ClassModel(t.Id, t.Name, t.Description, t.Price))
+                                              .ToArray();
+
+                var model = new StudentClassesModel { Classes = classes };
+
+                return View(model);
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel registerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                userManager.Register(registerModel.Email, registerModel.Password);
+
+                return Redirect("~/");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult Login()
         {
+           
             return View();
         }
 

@@ -1,0 +1,33 @@
+﻿@model University.Website.Models.StudentClassesModel
+
+@{
+    ViewBag.Title = "Student Class";
+}
+<h2>Student Classes</h2>
+<div class="container">
+    <br />
+    <div style="width:90%; margin:0 auto;">
+        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+            <thead>
+                @*Header*@
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+
+                @*Rows*@
+                @foreach (var item in Model.Classes)
+                {
+            <tr>
+                <td>@String.Format("{0}", item.Name)</td>
+                <td>@String.Format("{0}", item.Description)</td>
+                <td>@String.Format("{0}", Math.Round(item.Price, 2))</td>
+                <td>@Html.ActionLink("Remove", "StudentClasses", "Home", new { id=item.Id }, null)</td>
+            </tr>
+                }
+            </thead>
+        </table>
+    </div>
+</div>
