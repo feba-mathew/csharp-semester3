@@ -1,0 +1,41 @@
+﻿POST
+
+URL: 
+http://localhost:50775/api/user
+
+Body:
+{
+    "UserEmail": "fmathew@gmail.com",
+    "UserPassword": "12345"
+}
+
+
+
+PUT
+
+URL: 
+http://localhost:50775/api/user/1
+
+Body:
+{
+    "UserEmail": "febamathew@gmail.com",
+    "UserPassword": "98765"
+}
+
+GET ALL
+
+URL: 
+http://localhost:50775/api/user
+
+
+GET 
+
+URL: 
+http://localhost:50775/api/user/1
+
+
+DELETE 
+
+URL: 
+http://localhost:50775/api/user/1
+

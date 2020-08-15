@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "userId": 1,
+      "userEmail": "jijo",
+      "userPassword": "12345",
+      "createdDate": "08/15/2020"
+    },
+    {
+      "userId": 2,
+      "userEmail": "feba",
+      "userPassword": "54321",
+      "createdDate": "08/15/2020"
+    },
+    {
+      "userId": 3,
+      "userEmail": "noah",
+      "userPassword": "98765",
+      "createdDate": "08/15/2020"
+    }
+  ]
+}
